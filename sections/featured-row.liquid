@@ -1,21 +1,27 @@
 <div class="wrapper">
   <div class="page-width feature-row">
-    {% capture media_layout %}
+    {% capture image_layout %}
       <div class="feature-row__item">
         {% if section.settings.image != blank %}
+          {%- assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+          <div class="supports-js" style="max-width: {{ 600 | times: section.settings.image.aspect_ratio | round }}px; margin: 0 auto;">
+            <div class="feature-row__image-wrapper" style="padding-top:{{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100}}%;">
+              <img class="feature-row__image lazyload"
+                   src="{{ section.settings.image | img_url: '300x300' }}"
+                   data-src="{{ img_url }}"
+                   data-widths="[180, 360, 540, 720, 900, 1080, 1296, 1512, 1728, 2048]"
+                   data-aspectratio="{{ section.settings.image.aspect_ratio }}"
+                   data-sizes="auto"
+                   alt="{{ section.settings.image.alt }}"
+                   style="max-width: {{ 600 | times: section.settings.image.aspect_ratio | round }}px; max-height: 600px;">
+            </div>
+          </div>
+
           <noscript>
-            {{ section.settings.image | img_url: '600x600' | img_tag: section.settings.image.alt, 'feature-row__image-no-js' }}
+            <div style="max-width: {{ 600 | times: section.settings.image.aspect_ratio | round }}px; margin: 0 auto;">
+              {{ section.settings.image | img_url: '600x600' | img_tag: section.settings.image.alt, 'feature-row__image' }}
+            </div>
           </noscript>
-          <div class="feature-row__image-wrapper" style="padding-top:{{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100}}%;">
-            {% assign img_url = section.settings.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' %}
-            <img class="feature-row__image lazyload"
-              src="{{ section.settings.image | img_url: '300x300' }}"
-              data-src="{{ img_url }}"
-              data-widths="[360, 540, 720, 900, 1080, 1296, 1512, 1728, 1944, 2048]"
-              data-aspectratio="{{ section.settings.image.aspect_ratio }}"
-              data-sizes="auto"
-              alt="{{ section.settings.image.alt | escape }}">
-        </div>
         {% else %}
           {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
         {% endif %}
@@ -24,12 +30,12 @@
 
     <div class="feature-row">
       {% if section.settings.layout == 'left' %}
-        {{ media_layout }}
+        {{ image_layout }}
       {% endif %}
 
       <div class="feature-row__item feature-row__text feature-row__text--{{ section.settings.layout }}">
         {% if section.settings.title != blank %}
-          <h2 class="h3">{{ section.settings.title | escape }}</h2>
+          <h2 class="small--text-center">{{ section.settings.title | escape }}</h2>
         {% endif %}
         {% if section.settings.text != blank %}
           <div class="rte-setting featured-row__subtext">{{ section.settings.text }}</div>
@@ -42,7 +48,7 @@
       </div>
 
       {% if section.settings.layout == 'right' %}
-        {{ media_layout }}
+        {{ image_layout }}
       {% endif %}
     </div>
   </div>
@@ -72,7 +78,7 @@
     "th": "รูปภาพพร้อมข้อความ",
     "tr": "Metin içeren görsel",
     "vi": "Hình ảnh có chữ",
-    "zh-CN": "带文本图片",
+    "zh-CN": "带文本的图片",
     "zh-TW": "附文字的圖片"
   },
   "settings": [
@@ -231,7 +237,7 @@
         "th": "รูปภาพพร้อมข้อความ",
         "tr": "Metin içeren görsel",
         "vi": "Hình ảnh có chữ",
-        "zh-CN": "带文本图片",
+        "zh-CN": "带文本的图片",
         "zh-TW": "附文字的圖片"
       }
     },
@@ -243,7 +249,7 @@
         "da": "Tekst",
         "de": "Text",
         "en": "Text",
-        "es": "texto",
+        "es": "Texto",
         "fi": "Teksti",
         "fr": "Texte",
         "it": "Testo",
@@ -262,7 +268,7 @@
         "zh-TW": "文字"
       },
       "default": {
-        "cs": "<p>Zkombinujte velký text a obrázek, abyste zaměřili pozornost návštěvníků na zvolený produkt, kolekci či příspěvek na blogu. Pak můžete připojit podrobnosti o dostupnosti a stylu, nebo dokonce recenzi.</p>",
+        "cs": "<p>Zkombinujte velký text a obrázek, abyste zaměřili pozornost návštěvníků na zvolený produkt, kolekci či příspěvek na blogu. Pak můžete připojit podrobnosti o dostupnosti, stylu, nebo dokonce recenzi.</p>",
         "da": "<p>Kombiner stor tekst med et billede for at give dit valgte produkt, din valgte kollektion eller dit valgte blogopslag fokus. Tilføj oplysninger om tilgængelighed, stil og eventuelt også en anmeldelse.</p>",
         "de": "<p>Kombiniere lange Texte mit einem Bild, um den Fokus auf dein Produkt, deine Kategorie oder deinen Blogpost zu richten. Du kannst außerdem weitere Details über die Verfügbarkeit oder den Stil und sogar eine Bewertung hinzufügen.</p>",
         "en": "<p>Pair large text with an image to give focus to your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
@@ -291,7 +297,7 @@
       "label": {
         "cs": "Text tlačítka",
         "da": "Knaptekst",
-        "de": "Schaltflächenbezeichnung",
+        "de": "Schaltflächenbeschriftung",
         "en": "Button label",
         "es": "Etiqueta de botón",
         "fi": "Tekstipainike",
@@ -362,7 +368,7 @@
         "th": "รูปภาพพร้อมข้อความ",
         "tr": "Metin içeren görsel",
         "vi": "Hình ảnh có chữ",
-        "zh-CN": "带文本图片",
+        "zh-CN": "带文本的图片",
         "zh-TW": "附文字的圖片"
       },
       "category": {

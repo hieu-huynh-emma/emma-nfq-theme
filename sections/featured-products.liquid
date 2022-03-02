@@ -1,61 +1,50 @@
-<div id="CollectionSection" data-section-id="{{ section.id }}" data-section-type="collection-template" data-grid-type="{{ section.settings.collection_products_grid }}">
-  <div class="wrapper">
-    {% if section.settings.title != blank %}
-      <div class="section-header text-center">
-        <h2 class="h1 section-header__title">{{ section.settings.title | escape }}</h2>
-        <hr class="hr--small">
-      </div>
-    {% endif %}
+{% assign featured = section.settings.home_page_featured_products %}
+{% assign products_per_row = 3 %}
+{% assign rows = section.settings.home_featured_products_row_num %}
+{% assign total_products = products_per_row | times: rows %}
 
-    <div class="{% if section.settings.collection_products_grid == 'collage' %}grid grid-collage{% else %}grid-uniform{% endif %}">
+{% unless settings.home_section_1 == 'banner-image' %}
+  <hr class="medium-up--hide hr--clear hr--small">
+{% endunless %}
 
+<div class="featured-products">
+
+  {% if section.settings.title != blank %}
+    <h2 class="small--text-center">{{ section.settings.title | escape }}</h2>
+  {% endif %}
+
+  <div class="grid grid--uniform" role="list">
+
+    {% for product in collections[featured].products limit: total_products %}
+      {% include 'product-grid-item' %}
+    {% else %}
       {% comment %}
-        Loop through products in your Frontpage collection.
-        This collection is created by default, but you must add products to it.
-
-        See the snippet 'snippets/product-grid-collage.liquid'.
-
-        `is_reverse_row_product`, `three_row_index_product`, `collection_product_count_product`, and `divisible_by_three_product` are
-        all used by 'snippets/product-grid-collage.liquid'
-      {% endcomment %}
-
-      {% if section.settings.home_featured_products == blank or collections[section.settings.home_featured_products] == empty or collections[section.settings.home_featured_products].products_count == 0 %}
-
-      {% comment %}
+        If collection is empty, show onboarding state
         For onboarding new users to your theme, we add some default products and onboarding tutorials to help populate their store
       {% endcomment %}
-      {% unless emptyState %}
-        {% assign emptyState = true %}
+
+      {% unless onboardingLoaded %}
+        {% comment %}
+          Only load onboarding styles if they have not already been loaded.
+        {% endcomment %}
+        {% assign onboardingLoaded = true %}
       {% endunless %}
-        {% include 'onboarding-featured-products' %}
-      {% else %}
 
-        {% if section.settings.collection_products_grid == 'collage' %}
-
-          {% assign is_reverse_row__product = false %}
-          {% assign three_row_index__product = 0 %}
-          {% if collections[section.settings.home_featured_products].products_count > 50 %}
-            {% assign collection_product_count__product = 50 %}
-          {% else %}
-            {% assign collection_product_count__product = collections[section.settings.home_featured_products].products_count %}
-          {% endif %}
-          {% assign divisible_by_three__product = collection_product_count__product | modulo:3 %}
-
-          {% for product in collections[section.settings.home_featured_products].products %}
-            {% include 'product-grid-collage' %}
+      <div class="grid__item">
+        <div class="grid grid--uniform">
+          {% for i in (1..total_products) %}
+            <div class="grid__item product medium-up--one-third small--one-half text-center">
+              <a href="/admin/products" class="product__image-wrapper">
+                {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg' }}
+              </a>
+              <div class="product__title"><a href="/admin/products">{{ 'homepage.onboarding.product_title' | t | capitalize }}</a></div>
+              <div class="product__price">$19.99</div>
+            </div>
           {% endfor %}
-
-        {% else %}
-
-          {% assign grid_item_width = 'medium--one-half large--one-third' %}
-          {% for product in collections[section.settings.home_featured_products].products %}
-            {% include 'product-grid-item' %}
-          {% endfor %}
-
-        {% endif %}
-
-      {% endif %}
-    </div>
+        </div>
+      </div>
+    {% endfor %}
   </div>
 </div>
 
@@ -68,7 +57,7 @@
     "da": "Udvalgt kollektion",
     "de": "Vorgestellte Kategorie",
     "en": "Featured collection",
-    "es": "colección destacada",
+    "es": "Colección destacada",
     "fi": "Esittelyssä oleva kokoelma",
     "fr": "Collection en vedette",
     "it": "Collezione in evidenza",
@@ -118,7 +107,7 @@
         "da": "Udvalgt kollektion",
         "de": "Vorgestellte Kategorie",
         "en": "Featured collection",
-        "es": "colección destacada",
+        "es": "Colección destacada",
         "fi": "Esittelyssä oleva kokoelma",
         "fr": "Collection en vedette",
         "it": "Collezione in evidenza",
@@ -139,7 +128,7 @@
     },
     {
       "type": "collection",
-      "id": "home_featured_products",
+      "id": "home_page_featured_products",
       "label": {
         "cs": "Kolekce",
         "da": "Kollektion",
@@ -165,85 +154,35 @@
       }
     },
     {
-      "type": "select",
-      "id": "collection_products_grid",
+      "type": "range",
+      "id": "home_featured_products_row_num",
       "label": {
-        "cs": "Styl mřížky",
-        "da": "Gittertypografi",
-        "de": "Rasterstil",
-        "en": "Grid style",
-        "es": "Estilo de cuadrícula",
-        "fi": "Ruudukkotyyli",
-        "fr": "Style de grille",
-        "it": "Stile griglia",
-        "ja": "グリッドスタイル",
-        "ko": "그리드 스타일",
-        "nb": "Rutenettstil",
-        "nl": "Rasterstijl",
-        "pl": "Styl siatki",
-        "pt-BR": "Estilo da grade",
-        "pt-PT": "Estilo da grelha",
-        "sv": "Rutnätsstil",
-        "th": "สไตล์กริด",
-        "tr": "Izgara stili",
-        "vi": "Kiểu lưới",
-        "zh-CN": "网格样式",
-        "zh-TW": "網格樣式"
+        "cs": "Řádky",
+        "da": "Rækker",
+        "de": "Reihen",
+        "en": "Rows",
+        "es": "Filas",
+        "fi": "Rivit",
+        "fr": "Rangées",
+        "it": "Righe",
+        "ja": "行",
+        "ko": "열",
+        "nb": "Rader",
+        "nl": "Rijen",
+        "pl": "Wiersze",
+        "pt-BR": "Linhas",
+        "pt-PT": "Linhas",
+        "sv": "Rader",
+        "th": "แถว",
+        "tr": "Satırlar",
+        "vi": "Hàng",
+        "zh-CN": "行数",
+        "zh-TW": "列"
       },
-      "options": [
-        {
-          "value": "collage",
-          "label": {
-            "cs": "Koláž",
-            "da": "Collage",
-            "de": "Collage",
-            "en": "Collage",
-            "es": "Collage",
-            "fi": "Kollaasi",
-            "fr": "Collage",
-            "it": "Collage",
-            "ja": "コラージュ",
-            "ko": "콜라주",
-            "nb": "Fotomontasje",
-            "nl": "Collage",
-            "pl": "Kolaż",
-            "pt-BR": "Colagem",
-            "pt-PT": "Colagem",
-            "sv": "Kollage",
-            "th": "ภาพตัดแปะ",
-            "tr": "Kolaj",
-            "vi": "Ghép",
-            "zh-CN": "拼贴画",
-            "zh-TW": "拼貼"
-          }
-        },
-        {
-          "value": "grid",
-          "label": {
-            "cs": "Mřížka",
-            "da": "Gitter",
-            "de": "Raster",
-            "en": "Grid",
-            "es": "Cuadrícula",
-            "fi": "Ruudukko",
-            "fr": "Grille",
-            "it": "Griglia",
-            "ja": "グリッド",
-            "ko": "그리드",
-            "nb": "Rutenett",
-            "nl": "Grid",
-            "pl": "Siatka",
-            "pt-BR": "Grade",
-            "pt-PT": "Grelha",
-            "sv": "Rutnät",
-            "th": "กริด",
-            "tr": "Izgara",
-            "vi": "Lưới",
-            "zh-CN": "网格",
-            "zh-TW": "網格"
-          }
-        }
-      ]
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 2
     }
   ],
   "presets": [
@@ -253,7 +192,7 @@
         "da": "Udvalgt kollektion",
         "de": "Vorgestellte Kategorie",
         "en": "Featured collection",
-        "es": "colección destacada",
+        "es": "Colección destacada",
         "fi": "Esittelyssä oleva kokoelma",
         "fr": "Collection en vedette",
         "it": "Collezione in evidenza",

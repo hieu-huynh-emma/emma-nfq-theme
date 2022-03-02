@@ -1,46 +1,9 @@
-<div class="newsletter" data-section-id="{{ section.id }}" data-section-type="newsletter-section">
-  <div class="wrapper">
-    {% unless section.settings.heading == blank %}
-      <div class="section-header text-center">
-        <h2 class="h1 section-header__title">{{ section.settings.heading | escape }}</h2>
-        {% if section.settings.subheading == blank %}
-          <hr class="hr--small">
-        {% endif %}
-      </div>
-    {% endunless %}
-    {% unless section.settings.subheading == blank %}
-      <div class="section-subheading rte text-center">
-        {{ section.settings.subheading }}
-        <hr class="hr--small">
-      </div>
-    {% endunless %}
-    {% form 'customer' %}
-      {{ form.errors | default_errors }}
-      {% if form.posted_successfully? %}
-        <div class="newsletter--form">
-          <div class="note form-success">{{ 'general.newsletter_form.newsletter_confirmation' | t }}</div>
-        </div>
-      {% else %}
-        <label for="Email" class="newsletter__label hidden-label">{{ 'general.newsletter_form.newsletter_email' | t }}</label>
-        <input type="hidden" name="contact[tags]" value="newsletter">
-        <div class="newsletter--form">
-          <div class="input-group">
-            <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_placeholder' | t }}" name="contact[email]" id="Email" class="input-group-field newsletter__input" autocorrect="off" autocapitalize="off">
-            <span class="input-group-btn">
-              <button id="Subscribe" type="submit"
-                class="btn newsletter__submit"
-                aria-label="{{ 'general.newsletter_form.submit' | t }}">
-                <span class="newsletter__submit-text--large">{{ 'general.newsletter_form.submit' | t }}</span>
-                <span class="newsletter__submit-text--small">
-                  <span class="icon icon-arrow-right" aria-hidden="true"></span>
-                </span>
-              </button>
-            </span>
-          </div>
-        </div>
-      {% endif %}
-    {% endform %}
-  </div>
+<div data-section-id="{{ section.id }}" data-section-type="newsletter-section">
+  {% if section.settings.heading != blank %}
+    <h2 class="small--text-center">{{ section.settings.heading | escape }}</h2>
+  {% endif %}
+
+  {% include 'newsletter', label: section.settings.subtext %}
 </div>
 
 
@@ -70,7 +33,7 @@
     "zh-CN": "新闻通讯",
     "zh-TW": "電子報"
   },
-  "class": "index-section index-newsletter-section shopify-section--full-width",
+  "class": "newsletter-section",
   "settings": [
     {
       "type": "text",
@@ -78,7 +41,7 @@
       "label": {
         "cs": "Nadpis",
         "da": "Overskrift",
-        "de": "Überschrift",
+        "de": "Titel",
         "en": "Heading",
         "es": "Título",
         "fi": "Otsake",
@@ -105,7 +68,7 @@
         "en": "Subscribe to our newsletter",
         "es": "Suscríbete a nuestro boletín de noticias",
         "fi": "Tilaa uutiskirjeemme",
-        "fr": "Inscription à notre newsletter",
+        "fr": "S'inscrire à la newsletter",
         "it": "Iscriviti alla nostra newsletter",
         "ja": "ストアからのお知らせを受け取る",
         "ko": "뉴스 레터 구독",
@@ -124,29 +87,29 @@
     },
     {
       "type": "richtext",
-      "id": "subheading",
+      "id": "subtext",
       "label": {
-        "cs": "Podnadpis",
-        "da": "Underoverskrift",
-        "de": "Untertitel",
-        "en": "Subheading",
-        "es": "Subtítulo",
-        "fi": "Alaotsikko",
-        "fr": "Sous-titre",
-        "it": "Sottotitolo",
-        "ja": "小見出し",
-        "ko": "소제목",
-        "nb": "Underoverskrift",
-        "nl": "Subkop",
-        "pl": "Nagłówek podrzędny",
-        "pt-BR": "Subtítulo",
-        "pt-PT": "Subtítulo",
-        "sv": "Underrubrik",
-        "th": "หัวเรื่องย่อย",
-        "tr": "Alt başlık",
-        "vi": "Tiêu đề phụ",
-        "zh-CN": "副标题",
-        "zh-TW": "子標題"
+        "cs": "Text nižší úrovně",
+        "da": "Undertekst",
+        "de": "Subtext",
+        "en": "Subtext",
+        "es": "Subtexto",
+        "fi": "Alateksti",
+        "fr": "Sous-texte",
+        "it": "Sottotesto",
+        "ja": "サブテキスト",
+        "ko": "하위 텍스트",
+        "nb": "Undertekst",
+        "nl": "Subtekst",
+        "pl": "Tekst podrzędny",
+        "pt-BR": "Subtexto",
+        "pt-PT": "Subtexto",
+        "sv": "Undertext",
+        "th": "ข้อความรอง",
+        "tr": "Alt metin",
+        "vi": "Văn bản phụ",
+        "zh-CN": "子文本",
+        "zh-TW": "子文字"
       },
       "default": {
         "cs": "<p>Získejte informace o propagačních akcích, nových produktech a slevách – přímo do své schránky.</p>",
@@ -165,7 +128,7 @@
         "pt-BR": "<p>Promoções, novos produtos e vendas. Diretamente para sua caixa de entrada.</p>",
         "pt-PT": "<p>Promoções, novos produtos e ofertas. Diretamente na sua caixa de entrada.</p>",
         "sv": "<p>Kampanjer, nya produkter och försäljning. Direkt till din inkorg.</p>",
-        "th": "<p>โปรโมชัน สินค้าใหม่ และการลดราคา ตรงสู่กล่องจดหมายเข้าของคุณ</p>",
+        "th": "<p>โปรโมชัน สินค้าใหม่ และการลดราคา ส่งตรงสู่กล่องจดหมายเข้าของคุณ</p>",
         "tr": "<p>Promosyonlar, yeni ürünler ve indirimler. Doğrudan gelen kutunuzda.</p>",
         "vi": "<p>Khuyến mãi, sản phẩm mới và chương trình giảm giá. Trực tiếp vào hộp thư đến của bạn.</p>",
         "zh-CN": "<p>促销、新产品和销售。直接发送到您的收件箱。</p>",
@@ -180,9 +143,9 @@
         "de": "Für alle Kunden, die sich registrieren, wird in Shopify ein Konto erstellt. [Kunden ansehen](/admin/customers?query=&accepts_marketing=1)",
         "en": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers?query=&accepts_marketing=1)",
         "es": "Todos los clientes que se registren tendrán una cuenta creada para ellos en Shopify. [Ver clientes](/admin/customers?query=&accepts_marketing=1)",
-        "fi": "Tilaaville asiakkaille luodaan tili Shopifyssa. [Näytä asiakkaat](/admin/customers?query=&accepts_marketing=1)",
+        "fi": "Tilaaville asiakkaille luodaan tili Shopifyssa. [Näytä asiakkaat ](/admin/customers?query=&accepts_marketing=1)",
         "fr": "Un compte sera créé dans Shopify pour les abonnés qui s'inscrivent. [Afficher les abonnés](/admin/customers?query=&accepts_marketing=1)",
-        "it": "Qualsiasi cliente che si iscrive avrà un account creato appositamente per lui su Shopify. [Visualizza clienti](/admin/customers?query=&accepts_marketing=1)",
+        "it": "Per tutti i clienti che si iscrivono verrà creato appositamente un account su Shopify. [Visualizza clienti](/admin/customers?query=&accepts_marketing=1)",
         "ja": "サインアップしたお客様は、Shopifyでアカウントが作成されます。[お客様を表示する](/admin/customers?query=&accepts_marketing=1)",
         "ko": "가입한 고객은 Shopify에서 생성된 계정을 보유하게 됩니다. [고객 보기](/admin/customers?query=&accepts_marketing=1)",
         "nb": "Alle kunder som melder seg på, vil få opprettet en konto i Shopify. [Se kunder](/admin/customers?query=&accepts_marketing=1)",
@@ -202,27 +165,27 @@
   "presets": [
     {
       "name": {
-        "cs": "Přihlášení k odběru novinek",
-        "da": "Tilmelding til nyhedsbrev",
-        "de": "Newsletter-Anmeldung",
-        "en": "Newsletter signup",
-        "es": "Suscripción al boletín",
-        "fi": "Uutiskirjeen tilaus",
-        "fr": "Inscription à la newsletter",
-        "it": "Iscrizione alla Newsletter",
-        "ja": "ニュースレターの登録",
-        "ko": "뉴스레터 신청",
-        "nb": "Registrering for nyhetsbrev",
-        "nl": "Nieuwsbriefaanmelding",
-        "pl": "Rejestracja do newslettera",
-        "pt-BR": "Assinatura da newsletter",
-        "pt-PT": "Registo na newsletter",
-        "sv": "Nyhetsbrevsregistrering",
-        "th": "การสมัครรับจดหมายข่าว",
-        "tr": "Bülten kaydı",
-        "vi": "Đăng ký nhận bản tin",
-        "zh-CN": "新闻通讯注册",
-        "zh-TW": "訂閱電子報"
+        "cs": "Novinky",
+        "da": "Nyhedsbrev",
+        "de": "Newsletter",
+        "en": "Newsletter",
+        "es": "Boletín",
+        "fi": "Uutiskirje",
+        "fr": "Newsletter",
+        "it": "Newsletter",
+        "ja": "ニュースレター",
+        "ko": "뉴스레터",
+        "nb": "Nyhetsbrev",
+        "nl": "Nieuwsbrief",
+        "pl": "Newsletter",
+        "pt-BR": "Newsletter",
+        "pt-PT": "Newsletter",
+        "sv": "Nyhetsbrev",
+        "th": "จดหมายข่าว",
+        "tr": "Bülten",
+        "vi": "Bản tin",
+        "zh-CN": "新闻通讯",
+        "zh-TW": "電子報"
       },
       "category": {
         "cs": "Propagace",
@@ -248,7 +211,6 @@
         "zh-TW": "宣傳活動"
       }
     }
-  ],
-  "blocks": []
+  ]
 }
 {% endschema %}

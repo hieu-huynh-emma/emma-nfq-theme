@@ -1,19 +1,15 @@
-<div data-section-id="{{ section.id }}" data-section-type="featured-content-section">
-  <div class="rich-text wrapper">
-    <div class="grid">
-      <div class="grid__item text-center{% unless section.settings.home_page_full_width %} large--two-thirds medium--two-thirds push--large--one-sixth push--medium--one-sixth{% endunless %}">
-        {% if section.settings.section_title != blank %}
-          <div class="section-header">
-            <h2 class="rich-text__heading--{{ section.settings.text_size }} section-header__title h1">{{ section.settings.section_title | escape }}</h2>
-          </div>
-        {% endif %}
-        {% if section.settings.text != blank %}
-          <div class="rte rich-text__text--{{ section.settings.text_size }}">
-            {{ section.settings.text }}
-          </div>
-        {% endif %}
-      </div>
-    </div>
+<hr class="medium-up--hide hr--clear hr--small">
+
+<div class="rich-text" data-section-id="{{ section.id }}" data-section-type="featured-content-section">
+  {% if section.settings.section_title != blank %}
+    <h2 class="small--text-center h1 rich-text__heading--{{ section.settings.text_size }}">{{ section.settings.section_title | escape }}</h2>
+  {% endif %}
+  <div class="rte rich-text__text--{{ section.settings.text_size }}">
+    {% if section.settings.text != blank %}
+      {{ section.settings.text }}
+    {% else %}
+      <p>{{ 'homepage.onboarding.no_content' | t }}</p>
+    {% endif %}
   </div>
 </div>
 
@@ -44,42 +40,14 @@
     "zh-CN": "富文本",
     "zh-TW": "RTF 文字"
   },
-  "class": "index-section rich-text-section",
   "settings": [
-    {
-      "type": "checkbox",
-      "id": "home_page_full_width",
-      "label": {
-        "cs": "Zobrazení na šířku",
-        "da": "Bred visning",
-        "de": "Breites Display",
-        "en": "Wide display",
-        "es": "Pantalla ancha",
-        "fi": "Laaja näyttö",
-        "fr": "Écran large",
-        "it": "Visualizzazione ampia",
-        "ja": "ワイドディスプレイ",
-        "ko": "너비 표시",
-        "nb": "Bred visning",
-        "nl": "Brede weergave",
-        "pl": "Szerokie wyświetlanie",
-        "pt-BR": "Exibição ampla",
-        "pt-PT": "Exibição ampla",
-        "sv": "Breddvisning",
-        "th": "การแสดงผลแบบกว้าง",
-        "tr": "Geniş görünüm",
-        "vi": "Hiển thị rộng",
-        "zh-CN": "宽显示屏",
-        "zh-TW": "寬螢幕"
-      }
-    },
     {
       "type": "text",
       "id": "section_title",
       "label": {
         "cs": "Nadpis",
         "da": "Overskrift",
-        "de": "Überschrift",
+        "de": "Titel",
         "en": "Heading",
         "es": "Título",
         "fi": "Otsake",
@@ -131,7 +99,7 @@
         "da": "Tekst",
         "de": "Text",
         "en": "Text",
-        "es": "texto",
+        "es": "Texto",
         "fi": "Teksti",
         "fr": "Texte",
         "it": "Testo",
@@ -152,12 +120,12 @@
       "default": {
         "cs": "<p>Informujte zákazníky prostřednictvím tohoto textu o své značce. Zároveň můžete popsat některý z produktů, oznámit důležité informace nebo přivítat zákazníky ve svém obchodě.</p>",
         "da": "<p>Brug denne tekst til at dele oplysninger om dit brand med dine kunder. Beskriv et produkt, del meddelelser, eller byd kunder velkommen til din butik.</p>",
-        "de": "<p>Mit diesem Text kannst du deine Kunden über deine Marke informieren. Beschreibe ein Produkt, veröffentliche Ankündigungen oder begrüße Kunden in deinem Shop.</p>",
+        "de": "<p>Nutze diesen Text, um Infos über deine Marke mitzuteilen. Beschreibe ein Produkt, kündige etwas an oder heiße Kunden willkommen.</p>",
         "en": "<p>Use this text to share information about your brand with your customers. Describe a product, share announcements, or welcome customers to your store.</p>",
         "es": "<p>Usa este texto para compartir información sobre tu marca con tus clientes. Describe un producto, comparte anuncios o recibe clientes en tu tienda.</p>",
         "fi": "<p>Tämän tekstin avulla voit jakaa brändiäsi koskevia tietoja asiakkaille. Kuvaile tuotetta, jaa ilmoituksia tai toivota asiakkaat tervetulleiksi kauppaasi.</p>",
-        "fr": "<p>Utilisez ce texte pour communiquer des informations sur votre marque à vos clients. Décrivez un produit, partagez des annonces ou accueillez des clients dans votre boutique.</p>",
-        "it": "<p>Utilizza questo testo per condividere le informazioni sul tuo brand con i tuoi clienti. Descrivi un prodotto, condividi gli annunci o dai il benvenuto ai clienti nel tuo negozio.</p>",
+        "fr": "<p>Utilisez ce texte pour partager des informations sur votre marque. Décrivez un produit, partagez des annonces, ou souhaitez la bienvenue à vos clients.</p>",
+        "it": "<p>Utilizza questo testo per condividere le informazioni sul tuo brand con i clienti. Descrivi un prodotto, condividi gli annunci o dai il benvenuto ai clienti nel tuo negozio.</p>",
         "ja": "<p>このテキストを使用して、あなたのブランドに関する情報をお客様と共有します。商品を説明したり、告知の共有をしたり、あるいはあなたのストアのお客様を歓迎します。</p>",
         "ko": "<p>이 텍스트를 사용하여 고객과 브랜드에 대한 정보를 공유하십시오. 제품 설명, 공지 사항 공유 또는 고객의 스토어 방문을 환영합니다.</p>",
         "nb": "<p>Bruk denne teksten for å dele informasjon om merkevaren med kundene dine. Beskriv et produkt, del kunngjøringer eller ønsk kunder velkommen til butikken din.</p>",
@@ -184,7 +152,7 @@
         "es": "Tamaño",
         "fi": "Koko",
         "fr": "Taille",
-        "it": "Dimensione",
+        "it": "Misura",
         "ja": "サイズ",
         "ko": "사이즈",
         "nb": "Størrelse",
@@ -207,10 +175,10 @@
             "da": "Lille",
             "de": "Klein",
             "en": "Small",
-            "es": "Pequeña",
+            "es": "Pequeño",
             "fi": "Pieni",
-            "fr": "Petit",
-            "it": "Piccolo",
+            "fr": "Petite",
+            "it": "Small",
             "ja": "小",
             "ko": "스몰",
             "nb": "Liten",
@@ -231,12 +199,12 @@
           "label": {
             "cs": "Střední",
             "da": "Medium",
-            "de": "Mittel",
+            "de": "Mitte",
             "en": "Medium",
-            "es": "medio",
+            "es": "Mediano",
             "fi": "Keskisuuri",
-            "fr": "Moyen",
-            "it": "Medio",
+            "fr": "Moyenne",
+            "it": "Medium",
             "ja": "中",
             "ko": "보통",
             "nb": "Middels",
@@ -259,10 +227,10 @@
             "da": "Stor",
             "de": "Groß",
             "en": "Large",
-            "es": "grande",
+            "es": "Grande",
             "fi": "Suuri",
-            "fr": "Grand",
-            "it": "Grande",
+            "fr": "Grande",
+            "it": "Large",
             "ja": "大",
             "ko": "라지",
             "nb": "Stor",

@@ -1,10 +1,7 @@
 {
   "general": {
-    "404": {
-      "title": "404 Halaman Tidak Dijumpai",
-      "subtext_html": "Halaman yang anda cari tidak wujud. <a href=\"{{ link }}\" class=\"text-link\">Klik di sini<\/a> untuk meneruskan membeli-belah."
-    },
     "accessibility": {
+      "skip_to_content": "Langkau ke kandungan",
       "refresh_page": "Memilih satu pilihan akan mengakibatkan segar semula halaman penuh.",
       "unit_price_separator": "per",
       "selection_help": "Tekan kekunci ruang, kemudian kekunci anak panah untuk membuat pemilihan."
@@ -13,21 +10,20 @@
       "tags": "Tag \"{{ tags }}\"",
       "page": "Halaman {{ page }}"
     },
-    "pagination": {
-      "previous": "Sebelumnya",
-      "next": "Seterusnya"
+    "404": {
+      "title": "404 Halaman Tidak Dijumpai",
+      "subtext_html": "Halaman yang anda minta tidak wujud. Klik <a href=\"{{ link }}\">di sini</a> untuk meneruskan membeli-belah."
     },
     "password_page": {
-      "login_form_heading": "Masuk ke kedai menggunakan kata laluan:",
+      "login_form_heading": "Masuk kedai menggunakan kata laluan",
       "login_form_password_label": "Kata laluan",
       "login_form_password_placeholder": "Kata laluan anda",
       "login_form_submit": "Masukkan",
       "signup_form_email_label": "E-mel",
       "signup_form_success": "Kami akan menghantar e-mel kepada anda sebelum kami buka!",
-      "admin_link_html": "Adakah anda pemilik kedai? <a href=\"\/admin\" class=\"text-link\">Log masuk di sini<\/a>",
+      "admin_link_html": "Adakah anda pemilik kedai? <a href=\"/admin\" class=\"text-link\">Log masuk di sini</a>",
       "password_link": "Masuk menggunakan kata laluan",
-      "powered_by_shopify_html": "Kedai ini akan dikuasakan oleh {{ shopify }}",
-      "close": "tutup (esc)"
+      "powered_by_shopify_html": "Kedai ini akan dikuasakan oleh {{ shopify }}"
     },
     "social": {
       "share_on_facebook": "Kongsi",
@@ -40,40 +36,35 @@
       }
     },
     "newsletter_form": {
-      "newsletter_email": "Mendaftar ke senarai mel kami",
+      "newsletter_heading": "Jadilah orang yang tahu",
+      "newsletter_label": "Mendaftar untuk berita, tawaran dan gaya terkini",
       "newsletter_placeholder": "E-mel anda",
-      "newsletter_confirmation": "Terima kasih kerana melanggan",
-      "submit": "Langgan"
+      "submit": "Langgan",
+      "confirmation": "Terima kasih kerana melanggan"
     },
     "search": {
       "no_results_html": "Carian anda untuk \"{{ terms }}\"tidak menghasilkan sebarang keputusan.",
       "results_for_html": "Carian anda untuk \"{{ terms }}\"mendedahkan yang berikut:",
-      "title": "Carian",
-      "placeholder": "Cari kedai kami",
+      "title": "Cari kedai kami",
+      "placeholder": "Carian",
       "submit": "Carian"
     },
-    "drawers": {
-      "navigation": "Navigasi tapak",
-      "close_menu": "Tutup menu",
-      "expand_submenu": "Kembangkan submenu",
-      "collapse_submenu": "Runtuhkan submenu"
+    "breadcrumbs": {
+      "you_are_here": "Anda di sini",
+      "home": "Utama",
+      "home_link_title": "Kembali ke halaman depan"
     },
     "payment": {
-      "method": "Kaedah bayaran"
-    },
-    "language": {
-      "dropdown_label": "Bahasa"
-    },
-    "country": {
-      "dropdown_label": "Negara\/wilayah"
+      "method": "Ikon pembayaran"
     }
   },
   "blogs": {
     "article": {
+      "author_on_date_html": "Diposkan oleh {{ author }} pada {{ date }}",
       "tags": "Tag",
-      "read_more": "Teruskan membaca",
+      "comment_meta_html": "{{ author }} pada {{ date }}",
       "view_all": "Lihat semua",
-      "back_to_blog": "Kembali kepada {{ title }}"
+      "read_more": "Baca lebih lanjut"
     },
     "comments": {
       "title": "Tinggalkan komen",
@@ -92,39 +83,38 @@
   },
   "cart": {
     "general": {
-      "title": "Troli anda",
+      "title": "Troli Beli-belah",
       "remove": "Alih keluar",
       "note": "Arahan khas untuk penjual",
       "subtotal": "Subjumlah",
       "taxes_and_shipping_at_checkout": "Cukai dan penghantaran dikira semasa daftar keluar",
-      "taxes_and_shipping_policy_at_checkout_html": "Cukai dan <a href=\"{{ link }}\">penghantaran<\/a> dikira semasa daftar keluar",
+      "taxes_and_shipping_policy_at_checkout_html": "Cukai dan <a href=\"{{ link }}\">penghantaran</a> dikira semasa daftar keluar",
       "taxes_included_but_shipping_at_checkout": "Termasuk cukai dan penghantaran dikira semasa daftar keluar",
-      "taxes_included_and_shipping_policy_html": "Termasuk cukai. <a href=\"{{ link }}\">Penghantaran<\/a> dikira semasa daftar keluar.",
+      "taxes_included_and_shipping_policy_html": "Termasuk cukai. <a href=\"{{ link }}\">Penghantaran</a> dikira semasa daftar keluar.",
       "update": "Kemas Kini Troli",
       "checkout": "Daftar Keluar",
       "empty": "Troli anda kosong pada masa ini.",
-      "continue_browsing_html": "Teruskan melayari <a href=\"{{ link }}\">di sini<\/a>.",
-      "close_cart": "Tutup Troli",
-      "savings_html": "Anda menyimpan {{ savings }}",
-      "reduce_quantity": "Kurangkan kuantiti item dengan satu",
-      "increase_quantity": "Tingkatkan kuantiti item dengan satu",
-      "cookies_required": "Dayakan kuki untuk menggunakan troli beli-belah"
+      "cookies_required": "Dayakan kuki untuk menggunakan troli beli-belah",
+      "continue_browsing_html": "Teruskan melayari <a href=\"{{ link }}\">di sini</a>.",
+      "savings_html": "Anda menyimpan {{ price }}",
+      "continue_shopping": "Teruskan membeli-belah"
     },
     "label": {
+      "product": "Produk",
+      "price": "Harga",
       "quantity": "Kuantiti",
       "total": "Jumlah"
     }
   },
   "collections": {
     "general": {
-      "catalog_title": "Katalog",
-      "all_of_collection": "Semua",
-      "no_matches": "Maaf, tiada produk dalam koleksi ini."
+      "no_matches": "Maaf, tiada produk dalam koleksi ini.",
+      "link_title": "Semak imbas koleksi {{ title }} kami",
+      "tags": "Tapis mengikut",
+      "all_tags": "Semua produk"
     },
     "sorting": {
-      "title": "Isih mengikut",
-      "title_tags": "Tapis mengikut",
-      "all_of_collection": "Semua {{ collection }}"
+      "title": "Isih mengikut"
     }
   },
   "contact": {
@@ -163,16 +153,17 @@
       "address1": "Alamat1",
       "address2": "Alamat2",
       "city": "Bandar",
-      "country": "Negara\/Wilayah",
+      "country": "Negara/Wilayah",
       "province": "Wilayah",
-      "zip": "Poskod\/Kod Zip",
+      "zip": "Poskod/Kod Zip",
       "phone": "Telefon",
       "set_default": "Tetapkan sebagai alamat lalai",
       "add": "Tambah Alamat",
       "update": "Kemas Kini Alamat",
       "cancel": "Batalkan",
       "edit": "Edit",
-      "delete": "Padam"
+      "delete": "Padam",
+      "delete_confirm": "Adakah anda pasti ingin memadamkan alamat ini?"
     },
     "login": {
       "title": "Log masuk",
@@ -180,7 +171,6 @@
       "password": "Kata laluan",
       "forgot_password": "Lupa kata laluan anda?",
       "sign_in": "Daftar Masuk",
-      "cancel": "Kembali ke Kedai",
       "guest_title": "Teruskan sebagai tetamu",
       "guest_continue": "Teruskan"
     },
@@ -235,20 +225,10 @@
       "last_name": "Nama Terakhir",
       "email": "E-mel",
       "password": "Kata laluan",
-      "submit": "Cipta",
-      "cancel": "Kembali ke Kedai"
+      "submit": "Cipta"
     }
   },
-  "home_page": {
-    "slideshow": {
-      "navigation_instructions": "Gunakan anak panah kiri\/kanan untuk menavigasi tayangan slaid atau leret ke kiri\/kanan jika menggunakan peranti mudah alih",
-      "next_slide": "Slaid seterusnya",
-      "previous_slide": "Slaid sebelumnya",
-      "play": "Main tayangan slaid",
-      "pause": "Jeda tayangan slaid",
-      "load_slide": "Muatkan slaid {{ slide_number }}",
-      "active_slide": "Slaid {{ slide_number }}, semasa"
-    },
+  "homepage": {
     "onboarding": {
       "product_vendor": "Vendor produk",
       "product_title": "Contoh Tajuk Produk",
@@ -260,47 +240,60 @@
     "map": {
       "address_error": "Ralat mencari alamat itu",
       "address_no_results": "Tiada hasil untuk alamat itu",
-      "address_query_limit_html": "Anda telah melebihi had penggunaan API Google. Pertimbangkan untuk menaik taraf ke <a href=\"https:\/\/developers.google.com\/maps\/premium\/usage-limits\">Pelan Premium<\/a>.",
+      "address_query_limit_html": "Anda telah melebihi had penggunaan API Google. Pertimbangkan untuk menaik taraf ke <a href=\"https://developers.google.com/maps/premium/usage-limits\">Pelan Premium</a>.",
       "auth_error_html": "Terdapat masalah mengesahkan akaun Peta Google anda."
+    },
+    "slideshow": {
+      "previous_slide": "Slaid sebelumnya",
+      "next_slide": "Slaid seterusnya",
+      "pause": "Jeda tayangan slaid",
+      "play": "Main tayangan slaid",
+      "load_slide": "Muatkan slaid {{ slide_number }}",
+      "active_slide": "Slaid {{ slide_number }}, semasa",
+      "navigation_instructions": "Gunakan anak panah kiri/kanan untuk menavigasi tayangan slaid atau leret ke kiri/kanan jika menggunakan peranti mudah alih"
     }
   },
   "layout": {
+    "navigation": {
+      "menu": "Menu"
+    },
     "cart": {
       "title": "Troli"
     },
     "customer": {
       "account": "Akaun",
-      "log_out": "Log Keluar",
-      "log_in": "Log Masuk",
-      "create_account": "Cipta Akaun"
+      "logged_in_as_html": "Dilog masuk sebagai {{ first_name }}",
+      "log_out": "Log keluar",
+      "log_in": "Log masuk",
+      "create_account": "Daftar"
     },
     "footer": {
-      "social_platform": "{{ name }} pada {{ platform }}"
+      "social_platform": "{{ name }} pada {{ platform }}",
+      "copyright": "Hak Cipta"
     }
   },
   "products": {
     "general": {
-      "save_html": "Simpan<br \/>{{ saved_amount }}",
-      "collection_return": "Kembali kepada {{ collection }}",
-      "sale_price": "Harga jualan",
-      "regular_price": "Harga biasa",
-      "include_taxes": "Termasuk cukai.",
-      "shipping_policy_html": "<a href=\"{{ link }}\">Penghantaran<\/a> dikira semasa daftar keluar.",
+      "related_products_title": "Anda mungkin juga berminat",
       "unit_price": "Harga seunit"
     },
     "product": {
+      "regular_price": "Harga biasa",
+      "sale_price": "Harga jualan",
       "sold_out": "Habis Dijual",
-      "sold_out_html": "Habis<br \/>Dijual",
       "unavailable": "Tidak tersedia",
+      "on_sale": "Jualan",
+      "on_sale_from_html": "Dijual dari {{ price }}",
+      "from_text_html": "Dari {{ price }}",
+      "include_taxes": "Termasuk cukai.",
+      "shipping_policy_html": "<a href=\"{{ link }}\">Penghantaran</a> dikira semasa daftar keluar.",
       "quantity": "Kuantiti",
       "add_to_cart": "Tambah ke Troli",
-      "full_details": "Butiran penuh",
-      "view_in_space": "Lihat di dalam ruang anda",
-      "view_in_space_label": "Lihat di ruang anda, memuatkan item di dalam tetingkap realiti terimbuh",
-      "gallery_thumbnail_alt": "Muatkan imej ke dalam penonton Galeri, {{ imageAlt }}",
-      "video_thumbnail_alt": "Muatkan dan mainkan video dalam penonton Galeri, {{ imageAlt }}",
-      "model_thumbnail_alt": "Muatkan model 3D ke dalam penonton Galeri, {{ imageAlt }}",
-      "slide_label": "Slaid {{ slide_number }} daripada {{ slide_max }}."
+      "item_added_to_cart": "Item ditambah ke troli!",
+      "view_cart": "Lihat troli",
+      "continue_shopping": "Teruskan membeli-belah",
+      "description": "Penerangan",
+      "full_details": "Butiran penuh"
     },
     "zoom": {
       "next": "Seterusnya (Kekunci anak panah kanan)",
@@ -318,52 +311,8 @@
       "redeem": "Gunakan kod ini di daftar keluar untuk menebus kad hadiah anda",
       "shop_link": "Mulakan membeli-belah",
       "print": "Cetak",
+      "remaining_html": "{{ balance }} berbaki",
       "add_to_apple_wallet": "Tambah ke Apple Wallet"
-    }
-  },
-  "pagefly": {
-    "products": {
-      "product": {
-        "regular_price": "Regular price",
-        "sold_out": "Sold out",
-        "unavailable": "Unavailable",
-        "on_sale": "Sale",
-        "quantity": "Quantity",
-        "add_to_cart": "Add to cart",
-        "back_to_collection": "Back to {{ title }}",
-        "view_details": "View details"
-      }
-    },
-    "article": {
-      "tags": "Tags:",
-      "all_topics": "All topics",
-      "by_author": "by {{ author }}",
-      "posted_in": "Posted in",
-      "read_more": "Read more",
-      "back_to_blog": "Back to {{ title }}"
-    },
-    "comments": {
-      "title": "Leave a comment",
-      "name": "Name",
-      "email": "Email",
-      "message": "Message",
-      "post": "Post comment",
-      "moderated": "Please note, comments must be approved before they are published",
-      "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated.",
-      "success": "Your comment was posted successfully! Thank you!",
-      "comments_with_count": {
-        "one": "{{ count }} comment",
-        "other": "{{ count }} comments"
-      }
-    },
-    "password_page": {
-      "login_form_message": "Enter store using password:",
-      "login_form_password_label": "Password",
-      "login_form_password_placeholder": "Your password",
-      "login_form_submit": "Enter",
-      "signup_form_email_label": "Email",
-      "signup_form_success": "We will send you an email right before we open!",
-      "password_link": "Enter using password"
     }
   }
 }
