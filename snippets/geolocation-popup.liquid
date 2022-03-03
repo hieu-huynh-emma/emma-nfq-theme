@@ -5,25 +5,149 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"/>
 
-<div id="geolocation-popup" class="modal">
-    <p>Thanks for clicking. That felt good.</p>
-    <a href="#" rel="modal:close">Close</a>
+<div id="geolocation-popup">
+    <div class="country-modal">
+        <div class="country-modal-sidebar">
+            {% render 'icon-pin-rotate' %}
+        </div>
+        <div class="country-modal-content">
+            <p class="from-abroad">It seems you are visiting Emma from abroad.</p>
+            <div class="redirect-container">
+                <a href="https://www.emma-sleep.com/" class="redirect-button">Go to Emma</a>
+            </div>
+            <div>Alternatively you can choose your country from the list below:</div>
+            <select class="country-dropdown">
+                <option value="" selected="">
+                    Select your country
+                </option>
+            </select>
+            <div class="keep-me-container" onclick="closePopup()">
+                <a class="keep-me">Keep me on this site</a>
+            </div>
+        </div>
+    </div>
 </div>
+
+
+<style>
+    #geolocation-popup {
+        min-width: 620px;
+        padding: 0;
+    }
+
+    .country-modal {
+        position: relative;
+        background: #fffaf5;
+        margin: 0 auto;
+        border-radius: 10px;
+        display: flex;
+        color: #1e2b5a;
+        font-size: 16px;
+    }
+
+    .country-modal .close-button {
+        border: none;
+        background: none;
+        position: absolute;
+        top: 0.5rem;
+        right: 0.25rem;
+        color: #8a8a8a;
+        cursor: pointer;
+    }
+
+    .country-modal .country-modal-sidebar {
+        background-color: #ffa355;
+        padding: 2.5rem 1.5rem;
+        border-radius: 10px 0 0 10px;
+    }
+
+    .country-modal .country-modal-content {
+        padding: 2.5rem 5rem 2.5rem 1.5rem;
+    }
+
+    .icon-close {
+        font-size: 2.5rem;
+    }
+
+    .from-abroad {
+        margin-bottom: 2rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1;
+    }
+
+    .redirect-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 3rem;
+    }
+
+    .country-modal-content .redirect-button {
+        cursor: pointer;
+        border: none;
+        background: #ffa355;
+        border-radius: 1rem;
+        padding: 1rem 1.5rem;
+        text-align: center;
+        font-weight: bold;
+        border: 2px solid #ffa355;
+        color: #1e2b5a;
+    }
+
+    .redirect-button:hover {
+        background: white;
+        color: #ffa355;
+    }
+
+    .country-dropdown {
+        width: 100%;
+        margin-bottom: 1.5rem;
+        margin: 0 0 1rem;
+        appearance: none;
+        border: 1px solid #1e2b5a;
+        border-radius: 0.625rem;
+        font-size: 1rem;
+        font-weight: bold;
+        line-height: 1.5;
+        color: #1e2b5a;
+        transition: box-shadow .3s, border-color .25s ease-in-out, -webkit-box-shadow .3s;
+        background: #fffaf5;
+        cursor: pointer;
+        outline: none;
+    }
+
+    .keep-me-container {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .keep-me {
+        border: none;
+        text-decoration: underline;
+        cursor: pointer;
+        color: #1e2b5a;
+    }
+
+    .keep-me:hover {
+        color: #ffa355;
+        text-decoration: none;
+    }
+</style>
 
 <script>
 
     function checkGeolocation() {
-        const COUNTRY_NAME = "Canada"
+        const COUNTRY_NAME = "Canada";
+        const GEOLOCATION_API_KEY= "760c76c456b645fd81eadecde19808ce"
 
-        fetch('https://api.ipgeolocation.io/ipgeo?apiKey=760c76c456b645fd81eadecde19808ce')
+        fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${GEOLOCATION_API_KEY}`)
             .then(res => res.json())
             .then(ipgeo => {
-                console.log(ipgeo);
-
                 const popupShowed = !!sessionStorage.getItem('geolocationPopupShowed')
 
                 if (!popupShowed && ipgeo.country_name !== COUNTRY_NAME) {
-                    showPopup()
+                    showPopup();
+                    sessionStorage.setItem('geolocationPopupShowed', true);
                 }
             })
     }
@@ -32,9 +156,15 @@
         $("#geolocation-popup").modal({
             fadeDuration: 100
         });
-
-        sessionStorage.setItem('geolocationPopupShowed', true);
     }
+
+    function closePopup() {
+        $.modal.close();
+    }
+
+    //function redirectToOtherMarket(countryCode) {
+    //     window.open()
+    // }
 
     checkGeolocation()
 </script>
