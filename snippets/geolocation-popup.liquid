@@ -135,21 +135,36 @@
 </style>
 
 <script>
+    const GEOLOCATION_API_KEY= "760c76c456b645fd81eadecde19808ce"
+    const CANADA_COUNTRY = "Canada";
+    const quebecProvince = {
+        name: "Quebec",
+        storeUrl: 'http://qc.emma-sleep.ca'
+    };
 
     function checkGeolocation() {
-        const COUNTRY_NAME = "Canada";
-        const GEOLOCATION_API_KEY= "760c76c456b645fd81eadecde19808ce"
-
         fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${GEOLOCATION_API_KEY}`)
             .then(res => res.json())
             .then(ipgeo => {
-                const popupShowed = !!sessionStorage.getItem('geolocationPopupShowed')
+                quebecSubdomainGuard(ipgeo)
 
-                if (!popupShowed && ipgeo.country_name !== COUNTRY_NAME) {
-                    showPopup();
-                    sessionStorage.setItem('geolocationPopupShowed', true);
-                }
+                storeLocalizationGuard(ipgeo)
             })
+    }
+
+    function storeLocalizationGuard(ipgeo) {
+        const popupShowed = !!sessionStorage.getItem('geolocationPopupShowed')
+
+        if (!popupShowed && ipgeo.country_name !== CANADA_COUNTRY) {
+            showPopup();
+            sessionStorage.setItem('geolocationPopupShowed', 'true');
+        }
+    }
+
+    function quebecSubdomainGuard(ipgeo) {
+        if(ipgeo.state_prov === quebecProvince.name) {
+            window.location.href = quebecProvince.storeUrl
+        }
     }
 
     function showPopup() {
@@ -161,6 +176,7 @@
     function closePopup() {
         $.modal.close();
     }
+
 
     //function redirectToOtherMarket(countryCode) {
     //     window.open()
