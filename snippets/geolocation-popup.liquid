@@ -135,10 +135,10 @@
 </style>
 
 <script>
-    const GEOLOCATION_API_KEY= "760c76c456b645fd81eadecde19808ce"
+    const GEOLOCATION_API_KEY = "760c76c456b645fd81eadecde19808ce"
     const CANADA_COUNTRY = "Canada";
-    const quebecProvince = {
-        name: "Quebec",
+    const franceSubdomain = {
+        provinces: ["Quebec"],
         storeUrl: 'http://qc.emma-sleep.ca'
     };
 
@@ -146,7 +146,7 @@
         fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${GEOLOCATION_API_KEY}`)
             .then(res => res.json())
             .then(ipgeo => {
-                quebecSubdomainGuard(ipgeo)
+                franceSubdomainGuard(ipgeo)
 
                 storeLocalizationGuard(ipgeo)
             })
@@ -161,9 +161,9 @@
         }
     }
 
-    function quebecSubdomainGuard(ipgeo) {
-        if(ipgeo.state_prov === quebecProvince.name) {
-            window.location.href = quebecProvince.storeUrl
+    function franceSubdomainGuard(ipgeo) {
+        if (franceSubdomain.provinces.includes(ipgeo.state_prov)) {
+            window.location.href = franceSubdomain.storeUrl
         }
     }
 
