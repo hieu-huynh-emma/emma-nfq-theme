@@ -152,18 +152,18 @@
             })
     }
 
+    function franceSubdomainGuard(ipgeo) {
+        if (franceSubdomain.provinces.includes(ipgeo.state_prov)) {
+            window.location.href = franceSubdomain.storeUrl
+        }
+    }
+
     function storeLocalizationGuard(ipgeo) {
         const popupShowed = !!sessionStorage.getItem('geolocationPopupShowed')
 
         if (!popupShowed && ipgeo.country_name !== CANADA_COUNTRY) {
             showPopup();
             sessionStorage.setItem('geolocationPopupShowed', 'true');
-        }
-    }
-
-    function franceSubdomainGuard(ipgeo) {
-        if (franceSubdomain.provinces.includes(ipgeo.state_prov)) {
-            window.location.href = franceSubdomain.storeUrl
         }
     }
 
